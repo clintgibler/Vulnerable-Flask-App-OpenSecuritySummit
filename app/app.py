@@ -358,6 +358,10 @@ def unauth():
 # ruleid:flask-unauthenticated-routes
 @app.route('/other_unauth', methods = ['GET', 'POST'])
 def other_unauth():
+  token = request.headers.get('Authorization')
+  if not token:
+    return jsonify({'Error': 'Not Authenticated!'}),403
+def other_unauth():
     print("Calling other_unauth route")
     return jsonify({'ok': 'some text'}), 204
 
